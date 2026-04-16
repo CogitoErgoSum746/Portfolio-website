@@ -1,0 +1,113 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site.js';
+
+const {
+  title = `${site.name} | Portfolio`,
+  description = site.description
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/';
+const year = new Date().getFullYear();
+const navLinks = isHome
+  ? [
+      { href: '#work', label: 'Work' },
+      { href: '#experience', label: 'Experience' },
+      { href: '#about', label: 'About' },
+      { href: '#contact', label: 'Contact' }
+    ]
+  : [
+      { href: '/', label: 'Home' },
+      { href: '/#work', label: 'Projects' },
+      { href: '#contact', label: 'Contact' }
+    ];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div class="page-atmosphere" aria-hidden="true"></div>
+    <div class="page-grid-overlay" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="site-inner">
+        <a class="site-brand" href="/">
+          <span class="brand-mark">GE</span>
+          <span>
+            <strong>{site.name}</strong>
+            <small>{site.role}</small>
+          </span>
+        </a>
+
+        <nav class="site-nav" aria-label="Primary">
+          {navLinks.map((link) => (
+            <a class="nav-link" href={link.href}>
+              {link.label}
+            </a>
+          ))}
+          <a class="button-secondary nav-button" href={site.resume} target="_blank" rel="noreferrer">
+            Resume
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div class="site-inner footer-inner">
+        <div>
+          <p class="eyebrow">Built for serious roles, not generic browsing</p>
+          <h2 class="footer-title">Let's talk about systems that actually need to work.</h2>
+        </div>
+
+        <div class="footer-actions">
+          <a class="button-primary" href={`mailto:${site.email}`}>Email</a>
+          <a class="button-secondary" href={site.linkedin} target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+          <a class="button-secondary" href={site.github} target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+        </div>
+
+        <div class="footer-meta">
+          <p>{site.location}</p>
+          <p>Cogito Ergo Sum.</p>
+          <p>&copy; {year} {site.name}</p>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (() => {
+        const revealItems = Array.from(document.querySelectorAll('[data-reveal]'));
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              });
+            },
+            { threshold: 0.18 }
+          );
+          revealItems.forEach((item) => observer.observe(item));
+        } else {
+          revealItems.forEach((item) => item.classList.add('is-visible'));
+        }
+      })();
+    </script>
+  </body>
+</html>

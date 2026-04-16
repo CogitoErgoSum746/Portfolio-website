@@ -1,0 +1,25 @@
+{
+  "name": "gracious-portfolio-prototype",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@10.8.2",
+  "engines": {
+    "node": ">=22.15.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "@fontsource-variable/manrope": "5.2.8",
+    "@fontsource/cormorant-garamond": "5.2.11",
+    "@tailwindcss/vite": "4.2.2",
+    "astro": "5.18.1",
+    "tailwindcss": "4.2.2"
+  },
+  "volta": {
+    "node": "22.15.0"
+  }
+}

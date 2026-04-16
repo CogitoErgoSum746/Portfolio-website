@@ -1,0 +1,51 @@
+---
+const { feature, compact = false } = Astro.props;
+const headingClass = compact ? 'card-title' : 'section-title';
+---
+
+<article class:list={['panel podcast-card', compact && 'podcast-card-compact']} data-reveal>
+  <div class="podcast-media">
+    <div class="podcast-video-shell">
+      <video
+        class="podcast-video"
+        controls
+        preload="metadata"
+        playsinline
+        aria-label={feature.videoTitle}
+      >
+        <source src={feature.videoSrc} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <div class="space-y-5">
+    <div class="space-y-3">
+      <p class="eyebrow">{feature.eyebrow}</p>
+      <h2 class={headingClass}>{feature.title}</h2>
+      <p class="section-body">{feature.body}</p>
+    </div>
+
+    <ul class="timeline-list">
+      {feature.bullets.map((bullet) => (
+        <li>{bullet}</li>
+      ))}
+    </ul>
+
+    <p class="section-body">{feature.note}</p>
+
+    <div class="podcast-meta">
+      <span>Host: {feature.host}</span>
+      <span>Topic: DevOps, AI agents, incident response</span>
+    </div>
+
+    <div class="podcast-links">
+      <a class="button-primary" href={feature.episodeUrl} target="_blank" rel="noreferrer">
+        Podcast Episode
+      </a>
+      <a class="button-secondary" href={feature.youtubeUrl} target="_blank" rel="noreferrer">
+        YouTube and Shorts
+      </a>
+    </div>
+  </div>
+</article>

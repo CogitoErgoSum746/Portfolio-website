@@ -1,0 +1,44 @@
+---
+import ProjectVisual from './ProjectVisual.astro';
+
+const { project, index = 0 } = Astro.props;
+const reversed = index % 2 === 1;
+---
+
+<article class="panel project-card" data-reveal>
+  <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+    <div class:list={[reversed && 'lg:order-2']}>
+      <p class="project-index">0{index + 1}</p>
+      <div class="space-y-4">
+        <p class="eyebrow">{project.category}</p>
+        <h3 class="card-title">{project.title}</h3>
+        <p class="section-body max-w-2xl">{project.oneLiner}</p>
+      </div>
+
+      <div class="chip-list mt-6">
+        {project.tools.map((tool) => (
+          <span class="chip">{tool}</span>
+        ))}
+      </div>
+
+      <ul class="impact-list mt-8">
+        {project.impact.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+
+      <a class="button-primary mt-8 inline-flex" href={`/projects/${project.slug}`}>
+        Read Case Study
+      </a>
+    </div>
+
+    <div class:list={[reversed && 'lg:order-1']}>
+      <ProjectVisual
+        variant={project.diagram.variant}
+        title={project.diagram.title}
+        labels={project.diagram.labels}
+        compact={true}
+      />
+    </div>
+  </div>
+</article>

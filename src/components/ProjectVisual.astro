@@ -1,0 +1,42 @@
+---
+const { variant = 'signal', title = 'System Placeholder', labels = [], compact = false } = Astro.props;
+
+const captions = {
+  signal: 'Events become routes, and routes become action.',
+  infra: 'Delivery, scale, and compliance move on the same surface.',
+  cluster: 'A small lab, used seriously enough to build intuition that lasts.'
+};
+
+const items = [...labels, 'Input', 'Flow', 'Outcome'].slice(0, 6);
+---
+
+<div class:list={['diagram', `diagram-${variant}`, compact && 'diagram-compact']} aria-hidden="true">
+  <div class="diagram-toolbar">
+    <span class="diagram-dot"></span>
+    <span class="diagram-toolbar-title">{title}</span>
+    <span class="diagram-toolbar-note">prototype placeholder</span>
+  </div>
+
+  <div class="diagram-stage">
+    <div class="diagram-flow">
+      <div class="diagram-node">
+        <span class="diagram-node-label">Input</span>
+        <strong>{items[0]}</strong>
+      </div>
+      <div class="diagram-node">
+        <span class="diagram-node-label">Logic</span>
+        <strong>{items[1]}</strong>
+      </div>
+      <div class="diagram-node">
+        <span class="diagram-node-label">Output</span>
+        <strong>{items[2]}</strong>
+      </div>
+    </div>
+
+    <div class="diagram-stack">
+      {items.slice(3).map((item) => <span>{item}</span>)}
+    </div>
+  </div>
+
+  <p class="diagram-caption">{captions[variant] || captions.signal}</p>
+</div>

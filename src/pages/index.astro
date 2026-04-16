@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EvolutionGallery from '../components/EvolutionGallery.astro';
+import PodcastFeature from '../components/PodcastFeature.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import {
+  aboutPoints,
+  capabilities,
+  education,
+  experience,
+  futurePoints,
+  metrics,
+  operationsEvolution,
+  podcastFeature,
+  projects,
+  site
+} from '../data/site.js';
+---
+
+<BaseLayout title={`${site.name} | AI Automation, Backend & Cloud Systems`} description={site.description}>
+  <section class="section-shell !pt-32 md:!pt-40">
+    <div class="hero-grid">
+      <div class="space-y-8" data-reveal>
+        <p class="eyebrow">Systems Editorial Prototype</p>
+        <h1 class="display-title">{site.heroTitle}</h1>
+        <p class="lede max-w-2xl">{site.heroBody}</p>
+        <p class="section-body max-w-xl">{site.heroSupport}</p>
+
+        <div class="flex flex-wrap gap-4">
+          <a class="button-primary" href="#work">View Featured Work</a>
+          <a class="button-secondary" href={site.resume} target="_blank" rel="noreferrer">
+            Download Resume
+          </a>
+        </div>
+
+        <div class="chip-list">
+          <span class="chip">AI automation</span>
+          <span class="chip">Backend systems</span>
+          <span class="chip">Cloud infrastructure</span>
+          <span class="chip">CI/CD and operations</span>
+          <span class="chip">Robotics trajectory</span>
+        </div>
+      </div>
+
+      <aside class="panel hero-aside" data-reveal>
+        <div class="space-y-5">
+          <p class="eyebrow">Current posture</p>
+          <div class="space-y-3">
+            <h2 class="card-title">Professional first. Philosophy in the structure.</h2>
+            <p class="section-body">
+              I want the work to speak clearly before anything else does. The reflective side is still
+              here, but mostly in tone, judgment, and how the site moves from light into something
+              denser.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-aside-grid">
+          <div>
+            <span>Now</span>
+            <strong>AI, backend, cloud, automation</strong>
+          </div>
+          <div>
+            <span>Next</span>
+            <strong>Robotics and autonomous systems</strong>
+          </div>
+          <div>
+            <span>Signal</span>
+            <strong>Confidence, clarity, and range</strong>
+          </div>
+          <div>
+            <span>Location</span>
+            <strong>{site.location}</strong>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-shell !pt-10">
+    <div class="panel proof-panel" data-reveal>
+      <div class="proof-intro">
+        <p class="eyebrow">Resume-backed evidence</p>
+        <h2 class="section-title">Real systems, real outcomes, and a trajectory that already makes sense.</h2>
+      </div>
+
+      <div class="metric-grid">
+        {metrics.map((metric) => (
+          <article class="metric-card">
+            <p class="metric-value">{metric.value}</p>
+            <p class="metric-label">{metric.label}</p>
+            <p class="metric-note">{metric.note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell !pt-4">
+    <SectionHeading
+      eyebrow="Public proof"
+      title="TARS moved from private workflow to public explanation."
+      body="I added a short podcast clip here because it does something screenshots cannot: it shows I can explain the system, the guardrails, and the reasoning behind it in public."
+    />
+
+    <div class="mt-12">
+      <PodcastFeature feature={podcastFeature} />
+    </div>
+  </section>
+
+  <section class="section-shell !pt-2">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <SectionHeading
+        eyebrow="Architecture evolution"
+        title="FRIDAY was the first operational nerve. TARS became the guarded response layer."
+        body="This is the clearest product arc on the site right now: alerting first, then agent-guided action with stronger guardrails, better tooling context, and human approval where it should stay."
+      />
+
+      <EvolutionGallery evolution={operationsEvolution} compact={true} />
+    </div>
+  </section>
+
+  <section class="section-shell" id="work">
+    <SectionHeading
+      eyebrow="Featured case studies"
+      title="Three projects that show how I think, what I build, and the environments I want to grow into."
+      body="The prototype now includes one real media proof point for the operations story. The remaining visuals can be replaced later with diagrams, repos, and stronger project evidence."
+    />
+
+    <div class="mt-12 space-y-8">
+      {projects.map((project, index) => (
+        <ProjectCard project={project} index={index} />
+      ))}
+    </div>
+  </section>
+
+  <section class="section-shell" id="experience">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <SectionHeading
+        eyebrow="Experience"
+        title="I have already worked across delivery systems, AI workflows, product pressure, and self-directed infrastructure learning."
+        body="The throughline is consistent: get close to the real constraint, reduce ambiguity, and build something dependable enough to carry actual use."
+      />
+
+      <div class="space-y-5">
+        {experience.map((entry) => (
+          <article class="panel timeline-card" data-reveal>
+            <div class="timeline-head">
+              <div>
+                <p class="timeline-company">{entry.company}</p>
+                <h3 class="timeline-role">{entry.role}</h3>
+              </div>
+              <div class="timeline-period">
+                <span>{entry.period}</span>
+                <span>{entry.location}</span>
+              </div>
+            </div>
+
+            <ul class="timeline-list">
+              {entry.highlights.map((highlight) => (
+                <li>{highlight}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell" id="about">
+    <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+      <article class="panel statement-card" data-reveal>
+        <p class="eyebrow">About</p>
+        <h2 class="section-title">Confidence matters to me, but only when it has been earned.</h2>
+        <div class="space-y-4">
+          {aboutPoints.map((point) => (
+            <p class="section-body">{point}</p>
+          ))}
+        </div>
+      </article>
+
+      <div class="space-y-6">
+        <article class="panel education-card" data-reveal>
+          <p class="eyebrow">Education and direction</p>
+          <div class="space-y-5">
+            {education.map((item) => (
+              <div class="space-y-1">
+                <h3 class="timeline-role">{item.title}</h3>
+                <p class="section-body">{item.school}</p>
+                <p class="timeline-period-text">{item.period}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article class="panel capability-card" data-reveal>
+          <p class="eyebrow">Capabilities</p>
+          <div class="chip-list">
+            {capabilities.map((item) => (
+              <span class="chip">{item}</span>
+            ))}
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell !pb-24">
+    <div class="grid gap-8 lg:grid-cols-[1fr_1fr]">
+      <article class="panel future-card" data-reveal>
+        <p class="eyebrow">Future direction</p>
+        <h2 class="section-title">The bridge to robotics is deliberate, not cosmetic.</h2>
+        <ul class="timeline-list">
+          {futurePoints.map((point) => (
+            <li>{point}</li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="panel contact-card" data-reveal>
+        <p class="eyebrow">Direct contact</p>
+        <h2 class="section-title">If you need someone who can move between systems, product reality, and implementation, reach out.</h2>
+        <div class="space-y-4">
+          <a class="contact-link" href={`mailto:${site.email}`}>{site.email}</a>
+          <a class="contact-link" href={site.linkedin} target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+          <a class="contact-link" href={site.github} target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+          <a class="contact-link" href={site.resume} target="_blank" rel="noreferrer">
+            Resume PDF
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

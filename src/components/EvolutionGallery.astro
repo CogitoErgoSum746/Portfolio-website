@@ -1,0 +1,56 @@
+---
+const { evolution, compact = false } = Astro.props;
+const headingClass = compact ? 'card-title' : 'section-title';
+---
+
+<section class:list={['panel evolution-panel', compact && 'evolution-panel-compact']} data-reveal>
+  <div class="evolution-intro">
+    <p class="eyebrow">{evolution.eyebrow}</p>
+    <h2 class={headingClass}>{evolution.title}</h2>
+    <p class="section-body">{evolution.body}</p>
+  </div>
+
+  <div class="evolution-bridge" aria-hidden="true">
+    <span>{evolution.models[0].name}</span>
+    <i></i>
+    <span>{evolution.models[1].name}</span>
+  </div>
+
+  <div class="artifact-grid">
+    {evolution.models.map((model) => (
+      <article class="artifact-card">
+        <div class="artifact-topline">
+          <span class="artifact-phase">{model.phase}</span>
+          <span class="artifact-strap">{model.strap}</span>
+        </div>
+
+        <div class="artifact-image-shell">
+          <img class="artifact-image" src={model.imageSrc} alt={model.imageAlt} loading="lazy" />
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="card-title">{model.name}</h3>
+          <p class="section-body">{model.summary}</p>
+          <p class="section-body">{model.detail}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="video-placeholder-grid">
+    {evolution.videos.map((video) => (
+      <article class="video-placeholder-card">
+        <div class="video-placeholder-screen">
+          <span class="video-placeholder-badge">{video.status}</span>
+          <div class="video-placeholder-play">
+            <span></span>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <h3 class="card-title">{video.title}</h3>
+          <p class="section-body">{video.body}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

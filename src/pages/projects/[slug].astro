@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EvolutionGallery from '../../components/EvolutionGallery.astro';
+import PodcastFeature from '../../components/PodcastFeature.astro';
+import ProjectVisual from '../../components/ProjectVisual.astro';
+import { projects, site } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const otherProjects = projects.filter((entry) => entry.slug !== project.slug);
+---
+
+<BaseLayout title={`${project.title} | ${site.name}`} description={project.oneLiner}>
+  <section class="section-shell !pt-32 !pb-14">
+    <a class="eyebrow inline-flex" href="/#work">Back to featured work</a>
+
+    <div class="mt-6 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+      <div class="space-y-6" data-reveal>
+        <p class="eyebrow">{project.category}</p>
+        <h1 class="section-title">{project.title}</h1>
+        <p class="lede max-w-2xl">{project.oneLiner}</p>
+        <p class="section-body max-w-2xl">{project.context}</p>
+
+        <div class="chip-list">
+          {project.tools.map((tool) => (
+            <span class="chip">{tool}</span>
+          ))}
+        </div>
+      </div>
+
+      <div data-reveal>
+        <ProjectVisual
+          variant={project.diagram.variant}
+          title={project.diagram.title}
+          labels={project.diagram.labels}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell !pt-0">
+    <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <article class="panel detail-card" data-reveal>
+        <p class="eyebrow">Why it mattered</p>
+        <p class="section-body">{project.whyItMattered}</p>
+      </article>
+
+      <article class="panel detail-card" data-reveal>
+        <p class="eyebrow">Role</p>
+        <p class="section-body">{project.role}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-shell !pt-2">
+    <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <article class="panel detail-card" data-reveal>
+        <p class="eyebrow">Constraints</p>
+        <ul class="timeline-list">
+          {project.constraints.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="panel detail-card" data-reveal>
+        <p class="eyebrow">System approach</p>
+        <div class="space-y-5">
+          {project.systemApproach.map((step) => (
+            <div class="detail-step">
+              <h2 class="detail-step-title">{step.title}</h2>
+              <p class="section-body">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </article>
+    </div>
+  </section>
+
+  {project.mediaFeature && (
+    <section class="section-shell !pt-2">
+      <PodcastFeature feature={project.mediaFeature} compact={true} />
+    </section>
+  )}
+
+  {project.evolutionFeature && (
+    <section class="section-shell !pt-2">
+      <EvolutionGallery evolution={project.evolutionFeature} compact={true} />
+    </section>
+  )}
+
+  <section class="section-shell !pt-2">
+    <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <article class="panel detail-card" data-reveal>
+        <p class="eyebrow">Outcomes</p>
+        <ul class="timeline-list">
+          {project.outcomes.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="panel detail-card" data-reveal>
+        <p class="eyebrow">What it says about me</p>
+        <p class="section-body">{project.reflection}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-shell !pt-2 !pb-24">
+    <div class="space-y-6">
+      <div data-reveal>
+        <p class="eyebrow">Keep exploring</p>
+        <h2 class="section-title">The other featured case studies</h2>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-2">
+        {otherProjects.map((entry) => (
+          <a class="panel related-card" href={`/projects/${entry.slug}`} data-reveal>
+            <p class="eyebrow">{entry.category}</p>
+            <h3 class="card-title">{entry.title}</h3>
+            <p class="section-body">{entry.shortContext}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
