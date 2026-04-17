@@ -1,5 +1,5 @@
 ---
-const { variant = 'signal', title = 'System Placeholder', labels = [], compact = false } = Astro.props;
+const { variant = 'signal', title = 'System Overview', labels = [], compact = false } = Astro.props;
 
 const captions = {
   signal: 'Events become routes, and routes become action.',
@@ -14,7 +14,7 @@ const items = [...labels, 'Input', 'Flow', 'Outcome'].slice(0, 6);
   <div class="diagram-toolbar">
     <span class="diagram-dot"></span>
     <span class="diagram-toolbar-title">{title}</span>
-    <span class="diagram-toolbar-note">prototype placeholder</span>
+    <span class="diagram-toolbar-note">system sketch</span>
   </div>
 
   <div class="diagram-stage">

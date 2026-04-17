@@ -37,20 +37,22 @@ const headingClass = compact ? 'card-title' : 'section-title';
     ))}
   </div>
 
-  <div class="video-placeholder-grid">
-    {evolution.videos.map((video) => (
-      <article class="video-placeholder-card">
-        <div class="video-placeholder-screen">
-          <span class="video-placeholder-badge">{video.status}</span>
-          <div class="video-placeholder-play">
-            <span></span>
+  {evolution.videos?.length > 0 && (
+    <div class="video-placeholder-grid">
+      {evolution.videos.map((video) => (
+        <article class="video-placeholder-card">
+          <div class="video-placeholder-screen">
+            <span class="video-placeholder-badge">{video.status}</span>
+            <div class="video-placeholder-play">
+              <span></span>
+            </div>
           </div>
-        </div>
-        <div class="space-y-3">
-          <h3 class="card-title">{video.title}</h3>
-          <p class="section-body">{video.body}</p>
-        </div>
-      </article>
-    ))}
-  </div>
+          <div class="space-y-3">
+            <h3 class="card-title">{video.title}</h3>
+            <p class="section-body">{video.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  )}
 </section>

@@ -1,20 +1,20 @@
 export const site = {
   name: 'Gracious Eluvathingal',
   firstName: 'Gracious',
-  role: 'Software Engineer - AI Automation, Backend & Cloud Systems',
+  role: 'Software Engineer | AI Automation, Backend & Cloud Systems',
   location: 'Tempe, Arizona',
   email: 'jamesgracious123@gmail.com',
   linkedin: 'https://linkedin.com/in/gracious-james-eluvathingal',
   github: 'https://github.com/CogitoErgoSum746',
   resume: '/Gracious_James_Eluvathingal_Resume.pdf',
   description:
-    'Portfolio prototype for Gracious Eluvathingal, an AI automation, backend, and cloud systems engineer building toward robotics and autonomous systems.',
+    'Portfolio for Gracious Eluvathingal, a software engineer focused on AI automation, backend systems, and cloud infrastructure.',
   heroTitle:
     'I build AI automation, backend platforms, and cloud systems that turn uncertainty into reliable motion.',
   heroBody:
-    'My work sits where product pressure, infrastructure reality, and engineering judgment meet. I like making systems clearer, faster, and more dependable, then using that foundation to move toward harder problems in autonomy and robotics.',
+    'I build production-facing systems across AI automation, backend APIs, cloud infrastructure, and delivery pipelines. Most of my recent work lives in private environments, so this site focuses on the strongest public proof and sanitized case studies behind that work.',
   heroSupport:
-    'Professional proof comes first here. The philosophy stays underneath it: question assumptions, get close to the system, and trust judgment only after it has been earned.'
+    'The goal is simple: make it easy for recruiters, hiring managers, and engineers to see what I build, how I think, and where I am headed next.'
 };
 
 export const metrics = [
@@ -124,15 +124,15 @@ export const education = [
 ];
 
 export const aboutPoints = [
-  'I want the site to feel confident without pretending certainty is free. My gut feeling matters to me, but only after I have done enough work to make that judgment honest.',
-  'I do not enjoy moving mechanically through a 9-to-5 checklist. I care more about meaningful results, faster learning loops, and understanding the bigger system behind the visible task.',
-  'I want to be remembered as a good person who can think clearly under ambiguity, build from first principles, and stay gracious while doing serious technical work.'
+  'I do my best work where product pressure, delivery constraints, and infrastructure reality all meet. That usually means reducing ambiguity, tightening feedback loops, and making systems easier to operate.',
+  'My current focus is AI automation, backend services, CI/CD, and cloud systems. I am especially interested in roles where reliability, delivery quality, and technical judgment matter together.',
+  'Longer term, I am building toward robotics and autonomous systems by pairing graduate study with hands-on systems engineering work.'
 ];
 
 export const futurePoints = [
-  'Near term: deepen AI automation, backend systems, infrastructure ownership, and production decision-making.',
+  'Near term: keep deepening AI automation, backend systems, platform ownership, and production decision-making.',
   'Bridge: connect systems engineering with perception, control, and real-world autonomy constraints through graduate work and hands-on projects.',
-  'Long term: build intelligent systems that operate reliably in the physical world, where software quality and judgment both matter.'
+  'Long term: build intelligent systems that operate reliably in the physical world, where software quality and engineering judgment both matter.'
 ];
 
 export const podcastFeature = {
@@ -179,18 +179,6 @@ export const operationsEvolution = {
       summary:
         'A more capable DevOps agent with GitHub Maestro, CI/CD pipeline visibility, alert-system context, server actions, and explicit human-in-the-loop checkpoints before major fixes.',
       detail: 'The architectural shift was not just more automation. It was safer automation, split across focused agents so no single bot owns the whole system.'
-    }
-  ],
-  videos: [
-    {
-      title: 'FRIDAY walkthrough',
-      status: 'Video placeholder',
-      body: 'Reserve this slot for a short walkthrough of the monitoring workflow, alert routing, and how the first assistant reduced manual uptime checking.'
-    },
-    {
-      title: 'TARS walkthrough',
-      status: 'Video placeholder',
-      body: 'Reserve this slot for a future breakdown of the guardrails, handoff flow, and incident-response execution path behind TARS.'
     }
   ]
 };
