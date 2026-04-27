@@ -4,15 +4,16 @@ export const site = {
   role: 'Software Engineer | AI Automation, Backend & Cloud Systems',
   location: 'Tempe, Arizona',
   email: 'jamesgracious123@gmail.com',
+  url: 'https://cogitoergosum746.github.io/Portfolio-gracious.github.io/',
   linkedin: 'https://linkedin.com/in/gracious-james-eluvathingal',
   github: 'https://github.com/CogitoErgoSum746',
   resume: '/Gracious_James_Eluvathingal_Resume.pdf',
   description:
     'Portfolio for Gracious Eluvathingal, a software engineer focused on AI automation, backend systems, and cloud infrastructure.',
   heroTitle:
-    'I build AI automation, backend platforms, and cloud systems that turn uncertainty into reliable motion.',
+    'I build AI systems that make operations faster, clearer, and safer.',
   heroBody:
-    'I build production-facing systems across AI automation, backend APIs, cloud infrastructure, and delivery pipelines. Most of my recent work lives in private environments, so this site focuses on the strongest public proof and sanitized case studies behind that work.',
+    'I build production-facing systems across AI automation, backend APIs, cloud infrastructure, and delivery pipelines. The strongest recent work is private, so this portfolio turns the public signal into case studies, metrics, media, and a live personal dashboard.',
   heroSupport:
     'The goal is simple: make it easy for recruiters, hiring managers, and engineers to see what I build, how I think, and where I am headed next.'
 };
@@ -49,6 +50,160 @@ export const metrics = [
     note: 'Automation flows that turned scattered operational updates into live signal.'
   }
 ];
+
+export const proofSignals = [
+  {
+    label: 'Production responsibility',
+    value: '5K+ MAUs',
+    note: 'Private systems translated into sanitized public proof.'
+  },
+  {
+    label: 'Delivery leverage',
+    value: '6 pipelines',
+    note: 'Release paths redesigned around repeatable execution.'
+  },
+  {
+    label: 'Operational range',
+    value: 'AI + cloud',
+    note: 'Automation, APIs, infrastructure, and product coordination.'
+  },
+  {
+    label: 'Public artifact',
+    value: 'TARS',
+    note: 'DevOps assistant explained publicly on Teller’s Tech.'
+  }
+];
+
+export const dashboardSummary = {
+  eyebrow: 'Personal operating dashboard',
+  title: 'A live-feeling command center for work, learning, health, and long-term direction.',
+  body:
+    'The numbers are intentionally easy to replace later. For now they create a production-ready dashboard page that shows how I think about focus, energy, output, and professional trajectory.',
+  updated: 'Updated weekly',
+  confidence: 'Prototype data'
+};
+
+export const dashboardMetrics = [
+  {
+    key: 'work',
+    title: 'Work Output',
+    score: 86,
+    trend: '+12 pts',
+    headline: 'Production delivery is the strongest current signal.',
+    body:
+      'Backend, automation, CI/CD, and cloud work are moving together. The dashboard weights shipped systems higher than hours logged.',
+    stats: [
+      { label: 'Deep work hours', value: '31h', note: 'last 7 days', level: 82 },
+      { label: 'Systems shipped', value: '4', note: 'current month', level: 76 },
+      { label: 'Blocked tasks', value: '2', note: 'actively tracked', level: 26 }
+    ]
+  },
+  {
+    key: 'learning',
+    title: 'Learning Velocity',
+    score: 78,
+    trend: '+8 pts',
+    headline: 'Robotics and autonomous systems remain the long-term bridge.',
+    body:
+      'Graduate work, infrastructure ownership, and applied AI practice are tracked as one learning loop instead of separate lanes.',
+    stats: [
+      { label: 'Robotics study', value: '9h', note: 'last 7 days', level: 68 },
+      { label: 'Papers reviewed', value: '3', note: 'current sprint', level: 58 },
+      { label: 'Experiments logged', value: '6', note: 'current sprint', level: 74 }
+    ]
+  },
+  {
+    key: 'life',
+    title: 'Life Stability',
+    score: 72,
+    trend: '+5 pts',
+    headline: 'Energy is good, but recovery needs protection during launch weeks.',
+    body:
+      'This lane keeps the portfolio human: sleep, workouts, admin load, and social time affect the quality of engineering decisions.',
+    stats: [
+      { label: 'Sleep average', value: '7.1h', note: 'last 7 days', level: 71 },
+      { label: 'Training sessions', value: '4', note: 'current week', level: 80 },
+      { label: 'Admin backlog', value: '6', note: 'open items', level: 44 }
+    ]
+  },
+  {
+    key: 'systems',
+    title: 'Systems Health',
+    score: 83,
+    trend: '+10 pts',
+    headline: 'Automation is reducing repeated coordination work.',
+    body:
+      'This lane tracks the scaffolding around the work: runbooks, dashboards, reminders, and automation that protect focus.',
+    stats: [
+      { label: 'Automations active', value: '11', note: 'personal + work', level: 86 },
+      { label: 'Runbooks maintained', value: '7', note: 'active set', level: 78 },
+      { label: 'Manual repeats cut', value: '40%', note: 'estimated', level: 81 }
+    ]
+  }
+];
+
+export const dashboardTimeline = [
+  {
+    time: '06:40',
+    title: 'Morning calibration',
+    body: 'Review sleep, calendar pressure, and one critical output target before opening noisy work surfaces.'
+  },
+  {
+    time: '09:00',
+    title: 'Deep systems block',
+    body: 'Backend, automation, and infrastructure tasks get first claim on focused energy.'
+  },
+  {
+    time: '14:30',
+    title: 'Delivery and coordination',
+    body: 'Project updates, reviews, stakeholder follow-up, and issue resolution move into the afternoon lane.'
+  },
+  {
+    time: '20:15',
+    title: 'Learning loop',
+    body: 'Robotics reading, lab notes, or portfolio improvements close the day with deliberate compounding.'
+  }
+];
+
+export const dashboardFocusAreas = [
+  { label: 'Backend systems', value: 88 },
+  { label: 'AI automation', value: 91 },
+  { label: 'Cloud delivery', value: 80 },
+  { label: 'Robotics bridge', value: 67 },
+  { label: 'Health baseline', value: 72 },
+  { label: 'Relationship time', value: 64 }
+];
+
+export const dashboardChat = {
+  greeting:
+    'Ask me about the dashboard. I can explain work output, learning velocity, life stability, systems health, risks, and what the numbers are trying to show.',
+  quickQuestions: [
+    'What is the strongest signal?',
+    'Where is the biggest risk?',
+    'How should I explain this to recruiters?',
+    'What should improve next?'
+  ],
+  fallback:
+    'The short version: this dashboard frames Gracious as a systems-minded engineer who measures output, energy, learning, and operating discipline together. Ask about work, learning, life, systems, risks, or recruiter positioning for a sharper answer.',
+  answers: {
+    strongest:
+      'The strongest signal is work output. It combines production delivery, CI/CD ownership, backend systems, AI automation, and cloud cost/reliability improvements. That is the clearest hiring proof on the page.',
+    risk:
+      'The biggest risk is recovery pressure. Life stability is positive, but the dashboard shows admin load and launch pressure can drag down decision quality if recovery is ignored.',
+    recruiter:
+      'For recruiters, explain it as a personal operating dashboard: it shows the same habits Gracious brings to engineering work, measurable outcomes, clear feedback loops, and attention to reliability.',
+    improve:
+      'The next improvement should be replacing prototype numbers with real weekly data, then connecting the dashboard to a small JSON or analytics source so the trends stay current without manual edits.',
+    work:
+      'Work output is currently the lead indicator. Deep work hours, shipped systems, and active blockers are used to show execution quality instead of vague busyness.',
+    learning:
+      'Learning velocity tracks robotics study, papers, and experiments because the long-term direction is autonomous systems. It shows that current software work is building toward that trajectory.',
+    life:
+      'Life stability exists because engineering judgment depends on energy. Sleep, training, admin load, and social time are treated as operating inputs, not side notes.',
+    systems:
+      'Systems health measures the scaffolding around the work: automations, runbooks, dashboards, reminders, and repeated-task reduction.'
+  }
+};
 
 export const capabilities = [
   'AI automation and workflow orchestration',

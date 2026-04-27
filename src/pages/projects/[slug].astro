@@ -4,6 +4,7 @@ import EvolutionGallery from '../../components/EvolutionGallery.astro';
 import PodcastFeature from '../../components/PodcastFeature.astro';
 import ProjectVisual from '../../components/ProjectVisual.astro';
 import { projects, site } from '../../data/site.js';
+import { withBase } from '../../utils/paths.js';
 
 export function getStaticPaths() {
   return projects.map((project) => ({
@@ -18,7 +19,7 @@ const otherProjects = projects.filter((entry) => entry.slug !== project.slug);
 
 <BaseLayout title={`${project.title} | ${site.name}`} description={project.oneLiner}>
   <section class="section-shell !pt-32 !pb-14">
-    <a class="eyebrow inline-flex" href="/#work">Back to featured work</a>
+    <a class="eyebrow inline-flex" href={withBase('/#work')}>Back to featured work</a>
 
     <div class="mt-6 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
       <div class="space-y-6" data-reveal>
@@ -122,7 +123,7 @@ const otherProjects = projects.filter((entry) => entry.slug !== project.slug);
 
       <div class="grid gap-6 lg:grid-cols-2">
         {otherProjects.map((entry) => (
-          <a class="panel related-card" href={`/projects/${entry.slug}`} data-reveal>
+          <a class="panel related-card" href={withBase(`/projects/${entry.slug}`)} data-reveal>
             <p class="eyebrow">{entry.category}</p>
             <h3 class="card-title">{entry.title}</h3>
             <p class="section-body">{entry.shortContext}</p>

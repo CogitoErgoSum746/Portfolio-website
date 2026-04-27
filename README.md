@@ -13,6 +13,8 @@ Personal portfolio for Gracious James Eluvathingal. The site is designed to pres
 - Featured case studies drawn from public and sanitized professional work
 - Experience summary with measurable outcomes
 - Public proof points such as the TARS podcast clip
+- Personal operating dashboard for work, learning, life, and systems metrics
+- Dangling local dashboard assistant that explains the metrics without requiring an API key
 - A recruiter-friendly entry point into current focus areas and technical direction
 
 ## Local development

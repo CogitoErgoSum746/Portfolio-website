@@ -1,0 +1,397 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { withBase } from '../utils/paths.js';
+import {
+  dashboardChat,
+  dashboardFocusAreas,
+  dashboardMetrics,
+  dashboardSummary,
+  dashboardTimeline,
+  site
+} from '../data/site.js';
+
+const dashboardPayload = JSON.stringify({
+  chat: dashboardChat,
+  metrics: dashboardMetrics,
+  focusAreas: dashboardFocusAreas,
+  timeline: dashboardTimeline
+});
+---
+
+<BaseLayout
+  title={`Dashboard | ${site.name}`}
+  description="A personal operating dashboard for work output, learning velocity, life stability, systems health, and recruiter-facing signal."
+>
+  <section class="section-shell dashboard-hero-section !pt-32">
+    <div class="dashboard-hero">
+      <div class="space-y-7" data-reveal>
+        <div class="dashboard-status">
+          <span>{dashboardSummary.updated}</span>
+          <span>{dashboardSummary.confidence}</span>
+        </div>
+        <p class="eyebrow">{dashboardSummary.eyebrow}</p>
+        <h1 class="display-title">{dashboardSummary.title}</h1>
+        <p class="lede max-w-3xl">{dashboardSummary.body}</p>
+
+        <div class="flex flex-wrap gap-4">
+          <button class="button-primary" type="button" data-open-chat>Ask the Dashboard</button>
+          <a class="button-secondary" href={withBase('/#work')}>View Case Studies</a>
+        </div>
+      </div>
+
+      <div class="dashboard-command" data-reveal>
+        <div class="command-topline">
+          <span>Operating score</span>
+          <strong data-count-to="80">80</strong>
+        </div>
+
+        <div class="operating-orbit" aria-hidden="true">
+          <span class="orbit-ring orbit-ring-one"></span>
+          <span class="orbit-ring orbit-ring-two"></span>
+          <span class="orbit-ring orbit-ring-three"></span>
+          <div class="orbit-core">
+            <strong>80</strong>
+            <span>overall</span>
+          </div>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+
+        <div class="command-grid" aria-hidden="true">
+          {dashboardMetrics.map((metric) => (
+            <div class={`command-cell command-cell-${metric.key}`}>
+              <span>{metric.title}</span>
+              <strong data-count-to={metric.score}>{metric.score}</strong>
+              <i style={`--score: ${metric.score}%`}></i>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell !pt-8">
+    <SectionHeading
+      eyebrow="Life and work metrics"
+      title="The dashboard tracks output without pretending people are machines."
+      body="Each lane has a score, a short interpretation, and a few replaceable operating metrics. The values are placeholder data for now."
+    />
+
+    <div class="dashboard-metric-grid mt-12">
+      {dashboardMetrics.map((metric) => (
+        <article class={`dashboard-metric-card dashboard-metric-${metric.key}`} data-reveal>
+          <div class="metric-card-head">
+            <div>
+              <p class="eyebrow">{metric.title}</p>
+              <h2 class="dashboard-score" data-count-to={metric.score}>{metric.score}</h2>
+            </div>
+            <span>{metric.trend}</span>
+          </div>
+
+          <div class="space-y-3">
+            <h3 class="card-title">{metric.headline}</h3>
+            <p class="section-body">{metric.body}</p>
+          </div>
+
+          <div class="dashboard-stat-list">
+            {metric.stats.map((stat) => (
+              <div class="dashboard-stat">
+                <div>
+                  <span>{stat.label}</span>
+                  <strong>{stat.value}</strong>
+                </div>
+                <p>{stat.note}</p>
+                <i style={`--level: ${stat.level}%`}></i>
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-shell dashboard-workbench" id="dashboard-workbench">
+    <div class="dashboard-focus-panel" data-reveal>
+      <p class="eyebrow">Focus map</p>
+      <h2 class="card-title">Where the current portfolio signal is strongest.</h2>
+
+      <div class="focus-map">
+        {dashboardFocusAreas.map((area) => (
+          <div class="focus-map-row">
+            <span>{area.label}</span>
+            <strong>{area.value}%</strong>
+            <i style={`--value: ${area.value}%`}></i>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="dashboard-motion-panel" data-reveal>
+      <div class="motion-panel-header">
+        <div>
+          <p class="eyebrow">Animated signal model</p>
+          <h2 class="card-title">Work, learning, life, and systems feed the same loop.</h2>
+        </div>
+        <span>Live view</span>
+      </div>
+
+      <div class="signal-flow" aria-hidden="true">
+        {dashboardMetrics.map((metric, index) => (
+          <div class={`signal-node signal-node-${metric.key}`} style={`--delay: ${index * 180}ms`}>
+            <span>{metric.title}</span>
+            <strong>{metric.score}</strong>
+          </div>
+        ))}
+        <div class="signal-hub">
+          <span>Portfolio</span>
+          <strong>Signal</strong>
+        </div>
+      </div>
+
+      <div class="motion-ticker">
+        <div>
+          <span>Backend systems</span>
+          <span>AI automation</span>
+          <span>Cloud delivery</span>
+          <span>Robotics bridge</span>
+          <span>Recovery pressure</span>
+          <span>Operating discipline</span>
+          <span>Backend systems</span>
+          <span>AI automation</span>
+          <span>Cloud delivery</span>
+          <span>Robotics bridge</span>
+          <span>Recovery pressure</span>
+          <span>Operating discipline</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell !pt-0 !pb-24">
+    <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div data-reveal>
+        <p class="eyebrow">Daily operating rhythm</p>
+        <h2 class="section-title">A simple loop for keeping ambition tied to execution.</h2>
+      </div>
+
+      <div class="timeline-dashboard">
+        {dashboardTimeline.map((item) => (
+          <article class="timeline-dashboard-item" data-reveal>
+            <span>{item.time}</span>
+            <div>
+              <h3 class="card-title">{item.title}</h3>
+              <p class="section-body">{item.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="dangling-chatbot" id="dashboard-chat" data-floating-chat>
+    <div class="chat-cord" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <button
+      class="chatbot-toggle"
+      type="button"
+      data-chat-toggle
+      aria-expanded="false"
+      aria-controls="dashboard-chat-window"
+    >
+      <span class="bot-face" aria-hidden="true">
+        <i></i>
+        <i></i>
+      </span>
+      <span class="bot-copy">
+        <strong>Ask dashboard</strong>
+        <small>Local guide</small>
+      </span>
+    </button>
+
+    <section class="floating-chat-window" id="dashboard-chat-window" aria-label="Dashboard assistant">
+      <div class="chat-header">
+        <div>
+          <p class="eyebrow">Dashboard assistant</p>
+          <h2 class="card-title">Ask what the metrics mean.</h2>
+        </div>
+        <button type="button" class="chat-close" data-chat-close aria-label="Close dashboard assistant">Close</button>
+      </div>
+
+      <div class="quick-question-list" data-quick-questions>
+        {dashboardChat.quickQuestions.map((question) => (
+          <button type="button" class="quick-question" data-question={question}>{question}</button>
+        ))}
+      </div>
+
+      <div class="chat-log" data-chat-log aria-live="polite">
+        <article class="chat-message assistant-message">
+          <span>Assistant</span>
+          <p>{dashboardChat.greeting}</p>
+        </article>
+      </div>
+
+      <form class="chat-form" data-chat-form>
+        <input
+          type="text"
+          name="question"
+          data-chat-input
+          autocomplete="off"
+          placeholder="Ask about work, learning, life, systems, or risks"
+          aria-label="Ask the dashboard assistant a question"
+        />
+        <button class="button-primary" type="submit">Ask</button>
+      </form>
+    </section>
+  </div>
+
+  <script type="application/json" id="dashboard-payload" set:html={dashboardPayload}></script>
+
+  <script is:inline>
+    (() => {
+      const payloadNode = document.getElementById('dashboard-payload');
+      const floatingChat = document.querySelector('[data-floating-chat]');
+      const toggle = document.querySelector('[data-chat-toggle]');
+      const closeButton = document.querySelector('[data-chat-close]');
+      const openButtons = Array.from(document.querySelectorAll('[data-open-chat]'));
+      const form = document.querySelector('[data-chat-form]');
+      const input = document.querySelector('[data-chat-input]');
+      const log = document.querySelector('[data-chat-log]');
+      const quickQuestions = Array.from(document.querySelectorAll('[data-question]'));
+      const countItems = Array.from(document.querySelectorAll('[data-count-to]'));
+
+      if (!payloadNode || !form || !input || !log) return;
+
+      const payload = JSON.parse(payloadNode.textContent || '{}');
+      const answers = payload.chat?.answers || {};
+
+      const setChatOpen = (isOpen) => {
+        if (!floatingChat || !toggle) return;
+        floatingChat.classList.toggle('is-open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        if (isOpen) {
+          requestAnimationFrame(() => input.focus());
+        }
+      };
+
+      const createMessage = (speaker, text) => {
+        const message = document.createElement('article');
+        message.className = `chat-message ${speaker === 'You' ? 'user-message' : 'assistant-message'}`;
+
+        const label = document.createElement('span');
+        label.textContent = speaker;
+
+        const body = document.createElement('p');
+        body.textContent = text;
+
+        message.append(label, body);
+        log.append(message);
+        requestAnimationFrame(() => {
+          log.scrollTop = log.scrollHeight;
+        });
+      };
+
+      const answerFor = (question) => {
+        const text = question.toLowerCase();
+
+        if (text.includes('strong') || text.includes('best') || text.includes('signal')) return answers.strongest;
+        if (text.includes('risk') || text.includes('weak') || text.includes('danger')) return answers.risk;
+        if (text.includes('recruit') || text.includes('hire') || text.includes('interview')) return answers.recruiter;
+        if (text.includes('improve') || text.includes('next') || text.includes('better')) return answers.improve;
+        if (text.includes('work') || text.includes('job') || text.includes('delivery')) return answers.work;
+        if (text.includes('learn') || text.includes('robot') || text.includes('school') || text.includes('study')) {
+          return answers.learning;
+        }
+        if (text.includes('life') || text.includes('health') || text.includes('sleep') || text.includes('energy')) {
+          return answers.life;
+        }
+        if (text.includes('system') || text.includes('automation') || text.includes('runbook')) return answers.systems;
+
+        return payload.chat?.fallback || 'The dashboard is a compact view of work, learning, life, and systems health.';
+      };
+
+      const submitQuestion = (question) => {
+        const cleanQuestion = question.trim();
+        if (!cleanQuestion) return;
+
+        setChatOpen(true);
+        createMessage('You', cleanQuestion);
+        createMessage('Assistant', answerFor(cleanQuestion));
+        input.value = '';
+      };
+
+      const animateCount = (item) => {
+        const target = Number(item.dataset.countTo || 0);
+        if (!Number.isFinite(target)) return;
+
+        const duration = 900;
+        const startedAt = performance.now();
+        item.textContent = '0';
+
+        const tick = (now) => {
+          const progress = Math.min((now - startedAt) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          item.textContent = String(Math.round(target * eased));
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          }
+        };
+
+        requestAnimationFrame(tick);
+      };
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        submitQuestion(input.value);
+      });
+
+      toggle?.addEventListener('click', () => {
+        setChatOpen(!floatingChat?.classList.contains('is-open'));
+      });
+
+      closeButton?.addEventListener('click', () => {
+        setChatOpen(false);
+        toggle?.focus();
+      });
+
+      openButtons.forEach((button) => {
+        button.addEventListener('click', () => setChatOpen(true));
+      });
+
+      quickQuestions.forEach((button) => {
+        button.addEventListener('click', () => {
+          submitQuestion(button.dataset.question || '');
+        });
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          setChatOpen(false);
+        }
+      });
+
+      if ('IntersectionObserver' in window) {
+        const counted = new WeakSet();
+        const countObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting || counted.has(entry.target)) return;
+              counted.add(entry.target);
+              animateCount(entry.target);
+              countObserver.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.35 }
+        );
+        countItems.forEach((item) => countObserver.observe(item));
+      } else {
+        countItems.forEach(animateCount);
+      }
+    })();
+  </script>
+</BaseLayout>

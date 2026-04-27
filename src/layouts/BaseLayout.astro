@@ -1,25 +1,29 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site.js';
+import { canonicalFromPath, stripBase, withBase } from '../utils/paths.js';
 
 const {
   title = `${site.name} | Portfolio`,
   description = site.description
 } = Astro.props;
 
-const pathname = Astro.url.pathname;
+const pathname = stripBase(Astro.url.pathname);
 const isHome = pathname === '/';
+const canonicalUrl = canonicalFromPath(pathname, site.url);
 const year = new Date().getFullYear();
 const navLinks = isHome
   ? [
       { href: '#work', label: 'Work' },
+      { href: withBase('/dashboard'), label: 'Dashboard' },
       { href: '#experience', label: 'Experience' },
       { href: '#about', label: 'About' },
       { href: '#contact', label: 'Contact' }
     ]
   : [
-      { href: '/', label: 'Home' },
-      { href: '/#work', label: 'Projects' },
+      { href: withBase('/'), label: 'Home' },
+      { href: withBase('/#work'), label: 'Projects' },
+      { href: withBase('/dashboard'), label: 'Dashboard' },
       { href: '#contact', label: 'Contact' }
     ];
 ---
@@ -31,7 +35,14 @@ const navLinks = isHome
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#10141f" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
   </head>
   <body>
     <div class="page-atmosphere" aria-hidden="true"></div>
@@ -39,7 +50,7 @@ const navLinks = isHome
 
     <header class="site-header">
       <div class="site-inner">
-        <a class="site-brand" href="/">
+        <a class="site-brand" href={withBase('/')}>
           <span class="brand-mark">GE</span>
           <span>
             <strong>{site.name}</strong>
@@ -53,7 +64,7 @@ const navLinks = isHome
               {link.label}
             </a>
           ))}
-          <a class="button-secondary nav-button" href={site.resume} target="_blank" rel="noreferrer">
+          <a class="button-secondary nav-button" href={withBase(site.resume)} target="_blank" rel="noreferrer">
             Resume
           </a>
         </nav>

@@ -1,5 +1,6 @@
 ---
 import ProjectVisual from './ProjectVisual.astro';
+import { withBase } from '../utils/paths.js';
 
 const { project, index = 0 } = Astro.props;
 const reversed = index % 2 === 1;
@@ -27,7 +28,7 @@ const reversed = index % 2 === 1;
         ))}
       </ul>
 
-      <a class="button-primary mt-8 inline-flex" href={`/projects/${project.slug}`}>
+      <a class="button-primary mt-8 inline-flex" href={withBase(`/projects/${project.slug}`)}>
         Read Case Study
       </a>
     </div>

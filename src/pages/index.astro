@@ -4,6 +4,7 @@ import EvolutionGallery from '../components/EvolutionGallery.astro';
 import PodcastFeature from '../components/PodcastFeature.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import { withBase } from '../utils/paths.js';
 import {
   aboutPoints,
   capabilities,
@@ -13,6 +14,10 @@ import {
   metrics,
   operationsEvolution,
   podcastFeature,
+  proofSignals,
+  dashboardFocusAreas,
+  dashboardMetrics,
+  dashboardSummary,
   projects,
   site
 } from '../data/site.js';
@@ -29,7 +34,8 @@ import {
 
         <div class="flex flex-wrap gap-4">
           <a class="button-primary" href="#work">View Featured Work</a>
-          <a class="button-secondary" href={site.resume} target="_blank" rel="noreferrer">
+          <a class="button-secondary" href={withBase('/dashboard')}>Open Dashboard</a>
+          <a class="button-secondary" href={withBase(site.resume)} target="_blank" rel="noreferrer">
             Download Resume
           </a>
         </div>
@@ -43,34 +49,27 @@ import {
         </div>
       </div>
 
-      <aside class="panel hero-aside" data-reveal>
-        <div class="space-y-5">
-          <p class="eyebrow">Current focus</p>
-          <div class="space-y-3">
-            <h2 class="card-title">Production systems, automation, and infrastructure.</h2>
-            <p class="section-body">
-              This site is intentionally proof-first. It leads with case studies, outcomes, and public
-              artifacts instead of filler sections or generic personal-site copy.
-            </p>
-          </div>
+      <aside class="signal-console" data-reveal>
+        <div class="console-header">
+          <span>Live portfolio signal</span>
+          <strong>{site.location}</strong>
         </div>
 
-        <div class="hero-aside-grid">
-          <div>
-            <span>Now</span>
-            <strong>AI, backend, cloud, automation</strong>
+        <div class="console-core">
+          <div class="console-radar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-          <div>
-            <span>Next</span>
-            <strong>Robotics and autonomous systems</strong>
-          </div>
-          <div>
-            <span>Signal</span>
-            <strong>Confidence, clarity, and range</strong>
-          </div>
-          <div>
-            <span>Location</span>
-            <strong>{site.location}</strong>
+
+          <div class="console-stack">
+            {proofSignals.map((signal) => (
+              <article class="console-row">
+                <span>{signal.label}</span>
+                <strong>{signal.value}</strong>
+                <p>{signal.note}</p>
+              </article>
+            ))}
           </div>
         </div>
       </aside>
@@ -78,7 +77,7 @@ import {
   </section>
 
   <section class="section-shell !pt-10">
-    <div class="panel proof-panel" data-reveal>
+    <div class="proof-panel" data-reveal>
       <div class="proof-intro">
         <p class="eyebrow">Resume-backed evidence</p>
         <h2 class="section-title">Real systems, real outcomes, and a trajectory that already makes sense.</h2>
@@ -92,6 +91,41 @@ import {
             <p class="metric-note">{metric.note}</p>
           </article>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell !pt-4">
+    <div class="dashboard-teaser">
+      <div class="space-y-5" data-reveal>
+        <p class="eyebrow">{dashboardSummary.eyebrow}</p>
+        <h2 class="section-title">{dashboardSummary.title}</h2>
+        <p class="section-body max-w-2xl">{dashboardSummary.body}</p>
+        <a class="button-primary" href={withBase('/dashboard')}>Explore Dashboard</a>
+      </div>
+
+      <div class="dashboard-teaser-board" data-reveal>
+        <div class="mini-dashboard-grid">
+          {dashboardMetrics.map((metric) => (
+            <article class="mini-dashboard-card">
+              <span>{metric.title}</span>
+              <strong>{metric.score}</strong>
+              <p>{metric.trend}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="focus-meter-list">
+          {dashboardFocusAreas.slice(0, 4).map((area) => (
+            <div class="focus-meter">
+              <div>
+                <span>{area.label}</span>
+                <strong>{area.value}%</strong>
+              </div>
+              <i style={`--value: ${area.value}%`}></i>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -228,7 +262,7 @@ import {
           <a class="contact-link" href={site.github} target="_blank" rel="noreferrer">
             GitHub
           </a>
-          <a class="contact-link" href={site.resume} target="_blank" rel="noreferrer">
+          <a class="contact-link" href={withBase(site.resume)} target="_blank" rel="noreferrer">
             Resume PDF
           </a>
         </div>
